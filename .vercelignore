@@ -1,0 +1,13 @@
+.git
+.next
+.data
+.env*
+node_modules
+.vercel
+*.tsbuildinfo
+*.tar.gz
+coverage
+test-results
+playwright-report
+
+.netlify

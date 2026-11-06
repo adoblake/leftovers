@@ -1,0 +1,10 @@
+import {it,expect,vi,beforeEach,afterEach} from 'vitest';
+import {NextRequest} from 'next/server';
+const state=vi.hoisted(()=>({token:false}));
+vi.mock('next/headers',()=>({cookies:async()=>({get:()=>state.token?{value:'fictional-stale-session'}:undefined})}));
+import {POST} from '../app/api/records/route';
+beforeEach(()=>{state.token=false;vi.stubEnv('APP_ORIGIN','http://localhost:3000');vi.stubEnv('DATA_MODE','supabase')});
+afterEach(()=>vi.unstubAllEnvs());
+it('denies unauthenticated private record writes',async()=>{const req=new NextRequest('http://localhost:3000/api/records',{method:'POST',headers:{origin:'http://localhost:3000'},body:JSON.stringify({action:'partner',organization:'Unauthorized',zip:'85004'})});expect((await POST(req)).status).toBe(401)});
+it('denies cross-origin record writes',async()=>{const req=new NextRequest('http://localhost:3000/api/records',{method:'POST',headers:{origin:'https://other.example'},body:'{}'});expect((await POST(req)).status).toBe(403)});
+it('prevents stale authenticated sessions from changing records in a demonstration',async()=>{state.token=true;vi.stubEnv('DATA_MODE','preview');const req=new NextRequest('http://localhost:3000/api/records',{method:'POST',headers:{origin:'http://localhost:3000'},body:JSON.stringify({action:'partner',organization:'Demo',zip:'85004'})});expect((await POST(req)).status).toBe(503)});

@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Netlify installs its native Next.js runtime automatically.
+# Public previews use DATA_MODE=preview. Configure DATA_MODE=supabase,
+# APP_ORIGIN, database credentials and Turnstile before collecting real interest.
+# Select the Free plan and keep paid upgrades/add-ons disabled in the account.
