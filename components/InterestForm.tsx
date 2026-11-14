@@ -11,6 +11,7 @@ export function InterestForm({ kind, topic = 'general', preview = false, turnsti
   const id = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
   const [startedAt, setStartedAt] = useState(0);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [message, setMessage] = useState('');
@@ -20,6 +21,14 @@ export function InterestForm({ kind, topic = 'general', preview = false, turnsti
   const isContact = kind === 'contact';
   const isSponsor = kind === 'sponsor';
   const isConversation = isContact || isSponsor;
+  const fieldLabels: Record<string, string> = {
+    organization: isContact ? 'Organization' : 'Organization or household name', name: 'Your name',
+    email: 'Email address', phone: 'Phone', zip: isConversation ? 'ZIP code' : 'Phoenix-area ZIP code',
+    category: 'Food category', frequency: 'Surplus frequency', pounds: 'Estimated pounds',
+    notes: isSponsor ? 'Potential support message' : isContact ? 'Your message' : 'Additional information',
+    support_type: 'Potential support', sponsor_website: 'Organization website', consent: 'Contact permission',
+    recognition_consent: 'Public recognition permission',
+  };
 
   useEffect(() => { setStartedAt(Date.now()); }, []);
   useEffect(() => { if (done) successRef.current?.focus(); }, [done]);
@@ -34,8 +43,7 @@ export function InterestForm({ kind, topic = 'general', preview = false, turnsti
   function showErrors(fields: Record<string, string>) {
     setErrors(fields);
     requestAnimationFrame(() => {
-      const field = formRef.current?.elements.namedItem(Object.keys(fields)[0]);
-      if (field instanceof HTMLElement) field.focus();
+      errorRef.current?.focus();
     });
   }
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -75,9 +83,9 @@ export function InterestForm({ kind, topic = 'general', preview = false, turnsti
     } finally { setBusy(false); setChallengeReset(value => value + 1); }
   }
 
-  if (done) return <div className="success-card" ref={successRef} tabIndex={-1}>
+  if (done) return <div className="success-card" ref={successRef} tabIndex={-1} role="region" aria-labelledby={`${id}-success`}>
     <span className="success-icon"><Icon name="check" width="26" height="26" /></span>
-    <h2>{preview ? 'Demo complete.' : isConversation ? 'Thanks for starting a conversation.' : 'You’ve taken the first step.'}</h2>
+    <h2 id={`${id}-success`}>{preview ? 'Demo complete.' : isConversation ? 'Thanks for starting a conversation.' : 'You’ve taken the first step.'}</h2>
     <p role="status">{message}</p>
     {!isContact && !preview && <p>Your submission is an expression of interest. It does not confirm a partnership, sponsorship agreement, pickup, or service availability.</p>}
     <Link className="text-link" href="/how-it-works">What happens next <Icon name="arrow" width="16" height="16" /></Link>
@@ -91,7 +99,8 @@ export function InterestForm({ kind, topic = 'general', preview = false, turnsti
       if (errors[name]) setErrors(current => { const next = { ...current }; delete next[name]; return next; });
     }
   }}>
-    {Object.keys(errors).length > 0 && <div className="error-summary" role="alert"><p>Please check the highlighted fields below.</p></div>}
+    <p className="form-instructions">Fields are required unless marked optional.</p>
+    {Object.keys(errors).length > 0 && <div className="error-summary" role="alert" ref={errorRef} tabIndex={-1} aria-labelledby={`${id}-error-heading`}><h2 id={`${id}-error-heading`}>Check your response</h2><p>Please check the highlighted fields below.</p><ul>{Object.entries(errors).map(([field, text]) => <li key={field}>{fieldLabels[field] ? <a href={`#${id}-${field}`} onClick={event => { event.preventDefault(); const input = formRef.current?.elements.namedItem(field); if (input instanceof HTMLElement) input.focus(); }}>{fieldLabels[field]}: {text}</a> : 'Please refresh the form and try again.'}</li>)}</ul></div>}
     <fieldset><legend><span className="legend-number">01</span>{isContact ? 'Let’s start with you' : 'A little about you'}</legend>
       <label htmlFor={`${id}-organization`}><span id={`${id}-organization-label`}>{isContact ? 'Organization (optional)' : 'Organization or household name'}</span>
         <input {...inputProps('organization')} name="organization" required={!isContact} minLength={2} maxLength={160} autoComplete="organization" placeholder={isContact ? 'Your organization, if applicable' : isSponsor ? 'Your business or organization' : 'e.g. your restaurant, bakery, or market'} />{error('organization')}

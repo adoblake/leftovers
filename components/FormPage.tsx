@@ -7,7 +7,7 @@ import type { InterestKind } from '@/lib/validation';
 
 export function FormPage({ kind, title, description, topic = 'general', children }: { kind: InterestKind; title: string; description: string; topic?: 'general' | 'partner' | 'privacy'; children?: React.ReactNode }) {
   const mode = getDataMode();
-  return <main id="main" className="page-main form-page">
+  return <main id="main" tabIndex={-1} className="page-main form-page">
     <Link className="breadcrumb" href="/get-involved"><Icon name="arrow" width="14" height="14" /> Ways to get involved</Link>
     <div className="form-page-intro"><div className="eyebrow">PHOENIX PILOT / {kind === 'contact' ? 'LET’S CONNECT' : 'EXPRESSIONS OF INTEREST'}</div><h1>{title}</h1><p className="lead">{description}</p></div>
     {children}

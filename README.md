@@ -2,9 +2,9 @@
 
 A mobile-first Phoenix food recovery and resource-recovery pilot MVP. Built with Next.js, React, TypeScript, responsive CSS, Zod, and Supabase/PostgreSQL. The palette is forest green `#1F5E4B`, warm gold `#E8A83A`, cream `#F7F4EE`, and slate `#39424E`. The homepage uses the owner's supplied green-and-gold artwork; the header and favicon reuse its exact leaf-L vector. See [branding provenance](docs/branding.md). No finalized identity is invented or claimed.
 
-The current software budget is **$0**. The prepared launch path uses Netlify Free, Supabase Free, and Cloudflare Turnstile Free within their limits, with a provider subdomain and no payment processing or paid upgrades. Read the [zero-cost launch guide](docs/zero-cost-launch.md) for account setup, plan-verification limits, credentials, and deployment steps. No public deployment or live database is currently connected.
+The current software budget is **$0**. The prepared launch path uses Netlify Free, Supabase Free, and Cloudflare Turnstile Free within their limits, with a provider subdomain and no payment processing or paid upgrades. Read the [zero-cost launch guide](docs/zero-cost-launch.md) for account setup, plan-verification limits, credentials, and deployment steps. The owner-provided site address is [theleftovers.netlify.app](https://theleftovers.netlify.app/). Its deployed revision and live database configuration could not be verified from this workspace.
 
-[Launch this site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/adoblake/leftovers). Sign in with the account that owns the repository, select the Free plan, and keep the included build settings. The first deployment is a clearly labeled public demo. Netlify supplies the actual HTTPS website address after a successful deployment. This launch link is not the website URL; real intake and private staff access require the database and spam-check setup below.
+[Deploy a separate copy on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/adoblake/leftovers). Sign in with the account that owns the repository, select the Free plan, and keep the included build settings. The first deployment is a clearly labeled public demo. Netlify supplies the actual HTTPS website address after a successful deployment. This launch link is not the website URL; real intake and private staff access require the database and spam-check setup below.
 
 ## Local setup
 
@@ -19,7 +19,7 @@ npm run dev
 
 The server uses port 3000. Keep `APP_ORIGIN` equal to the exact browser origin when using another port. Do not overwrite an existing local environment file when refreshing setup.
 
-Public pages: `/`, `/mission`, `/how-it-works`, `/partners`, `/get-involved`, `/register`, `/survey`, `/pickup`, `/sponsors`, `/contact`, and `/privacy`. The homepage has FAQs and a proposed-phase roadmap. The keyboard-accessible mobile menu closes with Escape or navigation. `/register` is the QR-friendly registration path; its copy-link control uses the real hosting origin. Encode that deployed URL in QR materials after a live host is available.
+Public pages: `/`, `/mission`, `/how-it-works`, `/partners`, `/get-involved`, `/register`, `/survey`, `/pickup`, `/sponsors`, `/contact`, `/privacy`, and `/accessibility`. The homepage has FAQs and a proposed-phase roadmap. The keyboard-accessible mobile menu closes with Escape, navigation, or focus leaving the menu. `/register` is the QR-friendly registration path; its copy-link control uses the real hosting origin. Encode that deployed URL in QR materials after a live host is available.
 
 `/demo` uses clearly labeled fictional organizations and data. `/dashboard` is the private staff workspace. There is no default password or authentication bypass.
 
@@ -54,7 +54,7 @@ values ('ACTUAL-AUTH-USER-UUID','admin');
 
 `admin` reviews private interests, manages planning records and costs, and controls public sponsor acknowledgments. `coordinator` reviews private interests and manages recipient/pickup planning but cannot publish sponsors or write costs. `analyst` reads non-contact operational data. Users cannot assign their own roles. Row-level security protects every base table; anonymous users cannot access contact records. Public submissions use the service key only on the validated server route. Staff queries and mutations use the user's JWT and RLS, not the service key.
 
-Sessions use HTTP-only SameSite Strict cookies, secure in production, for at most one hour. Authentication is verified with Supabase on dashboard requests. Sign-out clears the browser session; expired sessions need a new sign-in. Staff provisioning can be handled administratively without adding an email/SMS subscription. Account-role checks still need verification against the hosted project.
+Sessions use HTTP-only SameSite Strict cookies, secure in production, for at most one hour. Authentication is verified with Supabase on dashboard requests. A warning appears within two minutes of expiry, and staff can renew through a keyboard-accessible sign-in dialog without clearing unsaved fields. Renewal still requires valid credentials and an authorized role; there is no fixed extension count. Sign-out clears the browser session. Staff provisioning can be handled administratively without adding an email/SMS subscription. Account-role checks still need verification against the hosted project.
 
 ## Intake and sponsorship
 
@@ -76,10 +76,15 @@ Recovery totals count completed pickups with actual weights, separately from est
 npm test
 npm run typecheck
 npm run build
+npm run test:a11y
 npm run check:launch
 ```
 
 The tests cover form validation/storage, sponsor consent and publication, server-side challenge verification, wrong-origin rejection, failed writes, role checks, and safe production preview behavior. PostgreSQL policy tests run all three migrations against PGlite and exercise real SQL/RLS behavior for anonymous, administrator, coordinator, and analyst roles. They do not prove a hosted Supabase project is configured correctly.
+
+`test:a11y` builds a production preview and runs free axe/Playwright checks against local public pages and staff screens. Staff records and authentication use an isolated, fictional fixture service; the suite does not access a real database. Install Chromium with `npx playwright install chromium` if a system browser is unavailable, or set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to an installed compatible Chromium browser. The cloud setup already has `/usr/bin/chromium`. Ports 3150–3152 must be free. Results, failure traces, and screenshots are written to ignored `test-results/`; keep real personal information out of test fixtures and artifacts.
+
+The accessibility target is **WCAG 2.2 AA**. See the [accessibility review](docs/accessibility-review.md) for scope, evidence, fixes, and the remaining live-site, screen-reader, and device checks. Automated results alone are not a WCAG conformance certification. The public accessibility statement is at `/accessibility`.
 
 `check:launch` loads `.env.local` when present, prints missing setting names only, and makes read-only schema, anonymous-isolation, and administrator-provisioning checks. It intentionally exits nonzero until live setup exists. Run the deployed HTTPS forms, real Turnstile challenge, account-role checks, sign-out, and expired sessions before inviting real personal information. A production preview build can be served with `npm start`; it does not collect actual interest.
 

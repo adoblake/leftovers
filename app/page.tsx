@@ -9,7 +9,7 @@ import { CallToAction } from '@/components/CallToAction';
 export const revalidate = 300;
 
 export default function Home() {
-  return <main id="main">
+  return <main id="main" tabIndex={-1}>
     <section className="hero">
       <div className="hero-copy"><div className="eyebrow"><Icon name="sun" width="18" height="18" /> GOOD FOOD. GREATER POSSIBILITY.</div>
         <h1>Good food.<br />New purpose.<br /><em>Stronger community.</em></h1>

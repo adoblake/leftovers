@@ -73,6 +73,7 @@ Run locally before deployment:
 npm ci
 npm test
 npm run build
+npm run test:a11y
 npm run check:launch
 ```
 

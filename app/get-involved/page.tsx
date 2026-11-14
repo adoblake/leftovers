@@ -12,7 +12,7 @@ const ways = [
 ] as const;
 
 export default function Page() {
-  return <main id="main" className="page-main"><div className="eyebrow">GOOD FOOD. MORE CONNECTIONS.</div><h1>Find your place<br /><em>at the table.</em></h1><p className="lead">A better next chapter starts with people like you. Choose the path that fits, and help shape the Phoenix pilot.</p>
+  return <main id="main" tabIndex={-1} className="page-main"><div className="eyebrow">GOOD FOOD. MORE CONNECTIONS.</div><h1>Find your place<br /><em>at the table.</em></h1><p className="lead">A better next chapter starts with people like you. Choose the path that fits, and help shape the Phoenix pilot.</p>
     <div className="involvement-grid">{ways.map(way => <article className="involvement-card" key={way.href}><Icon name={way.icon} width="32" height="32" /><div className="eyebrow">{way.label}</div><h2>{way.title}</h2><p>{way.description}</p><Link className="text-link" href={way.href}>{way.action}<Icon name="arrow" width="17" height="17" /></Link></article>)}</div>
     <div className="notice"><strong>A pilot in the making.</strong> Pickups are not operational. All interest is pending review and approval. Food safety and regulatory review come before launch; availability, pricing, and tax benefits are not promised.</div><p>Have an idea or a question? <Link className="text-link" href="/contact">Let’s talk <Icon name="arrow" width="16" height="16" /></Link></p>
   </main>;

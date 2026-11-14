@@ -10,7 +10,7 @@ const output = process.argv[2] ? resolve(process.argv[2]) : join(tmpdir(), `left
 const files = [
   'app', 'components', 'lib', 'public', 'supabase', 'tests', 'scripts', 'docs',
   'package.json', 'package-lock.json', 'tsconfig.json', 'next-env.d.ts',
-  'next.config.ts', 'vitest.config.ts', 'vercel.json', '.vercelignore', 'netlify.toml',
+  'next.config.ts', 'vitest.config.ts', 'playwright.config.ts', 'vercel.json', '.vercelignore', 'netlify.toml',
   '.gitignore', '.nvmrc', '.env.example', 'README.md', 'AGENTS.md',
 ];
 function rejectSymlinks(path) {

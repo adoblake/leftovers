@@ -17,7 +17,9 @@ export function MainNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
-  return <div className="navigation" onKeyDown={event => {
+  return <div className="navigation" onBlur={event => {
+    if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
+  }} onKeyDown={event => {
     if (event.key === 'Escape' && open) { setOpen(false); button.current?.focus(); }
   }}>
     <button ref={button} className="menu-toggle" aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(!open)}>
