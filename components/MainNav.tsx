@@ -6,10 +6,11 @@ import { useRef, useState } from 'react';
 import { Icon } from './Icon';
 
 const links = [
-  { href: '/mission', label: 'Our mission' },
   { href: '/how-it-works', label: 'How it works' },
-  { href: '/partners', label: 'For partners' },
-  { href: '/sponsors', label: 'Sponsorship' },
+  { href: '/crew', label: 'Day Crew' },
+  { href: '/partners', label: 'Partners' },
+  { href: '/mission', label: 'Mission' },
+  { href: '/sponsors', label: 'Sponsor' },
   { href: '/contact', label: 'Contact' },
 ];
 

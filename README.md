@@ -1,6 +1,6 @@
 # LEFTOVERS — Finding Value Everywhere
 
-A mobile-first Phoenix food recovery and resource-recovery pilot MVP. Built with Next.js, React, TypeScript, responsive CSS, Zod, and Supabase/PostgreSQL. The palette is forest green `#1F5E4B`, warm gold `#E8A83A`, cream `#F7F4EE`, and slate `#39424E`. The homepage uses the owner's supplied green-and-gold artwork; the header and favicon reuse its exact leaf-L vector. See [branding provenance](docs/branding.md). No finalized identity is invented or claimed.
+LEFTOVERS is a work-first social enterprise aimed at ending homelessness, starting in Phoenix. Surplus food from local businesses becomes paid same-day Day Crew work, fair-price groceries at the Leftovers Market, and rooms members pay rent on. Phase 2 adds Ambrose Hall for recovery, basic health care and job training with licensed partners; Phase 3 takes the model to other cities. Nothing is operating yet. The public site uses a bold gold-and-green style with Archivo (self-hosted through `next/font`). The palette is forest green `#1F5E4B`, deep green `#12392D`, warm gold `#E8A83A`, and cream `#F7F4EE`. The header and favicon reuse the owner's leaf-L vector. See [branding provenance](docs/branding.md).
 
 The current software budget is **$0**. The prepared launch path uses Netlify Free, Supabase Free, and Cloudflare Turnstile Free within their limits, with a provider subdomain and no payment processing or paid upgrades. Read the [zero-cost launch guide](docs/zero-cost-launch.md) for account setup, plan-verification limits, credentials, and deployment steps. The owner-provided site address is [theleftovers.netlify.app](https://theleftovers.netlify.app/). Its deployed revision and live database configuration could not be verified from this workspace.
 
@@ -19,7 +19,7 @@ npm run dev
 
 The server uses port 3000. Keep `APP_ORIGIN` equal to the exact browser origin when using another port. Do not overwrite an existing local environment file when refreshing setup.
 
-Public pages: `/`, `/mission`, `/how-it-works`, `/partners`, `/get-involved`, `/register`, `/survey`, `/pickup`, `/sponsors`, `/contact`, `/privacy`, and `/accessibility`. The homepage has FAQs and a proposed-phase roadmap. The keyboard-accessible mobile menu closes with Escape, navigation, or focus leaving the menu. `/register` is the QR-friendly registration path; its copy-link control uses the real hosting origin. Encode that deployed URL in QR materials after a live host is available.
+Public pages: `/`, `/mission`, `/how-it-works`, `/partners`, `/get-involved`, `/crew`, `/register`, `/survey`, `/pickup`, `/sponsors`, `/contact`, `/privacy`, and `/accessibility`. The homepage has FAQs and a proposed-phase roadmap. `/crew` collects Day Crew interest through the contact form (topic `crew`); `/contact?topic=employer` collects work-contract interest. Both are stored as contact interests with a topic label, so no migration is needed. The keyboard-accessible mobile menu closes with Escape, navigation, or focus leaving the menu. `/register` is the QR-friendly registration path; its copy-link control uses the real hosting origin. Encode that deployed URL in QR materials after a live host is available.
 
 `/demo` uses clearly labeled fictional organizations and data. `/dashboard` is the private staff workspace. There is no default password or authentication bypass.
 

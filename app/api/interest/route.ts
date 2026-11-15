@@ -8,7 +8,7 @@ import { getDataMode, isAllowedOrigin } from '@/lib/runtime-config';
 
 export const runtime = 'nodejs';
 const limits = new Map<string, { count: number; reset: number }>();
-const topicLabels = { general: 'General inquiry', partner: 'Recipient partnership', privacy: 'Privacy request' };
+const topicLabels = { general: 'General inquiry', partner: 'Recipient partnership', privacy: 'Privacy request', crew: 'Day Crew interest', employer: 'Employer or work contract' };
 
 export async function POST(req: NextRequest) {
   if (!isAllowedOrigin(req.headers.get('origin'))) return NextResponse.json({ message: 'Origin not allowed.' }, { status: 403 });

@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 export const interestKinds = ['donor', 'survey', 'pickup', 'contact', 'sponsor'] as const;
 export type InterestKind = typeof interestKinds[number];
+export const contactTopics = ['general', 'partner', 'privacy', 'crew', 'employer'] as const;
+export type ContactTopic = typeof contactTopics[number];
 export const supportTypes = ['Funding', 'Transport', 'Storage and food safety', 'Professional services', 'Community connections', 'Not sure yet'] as const;
 
 export const interestSchema = z.object({
@@ -15,7 +17,7 @@ export const interestSchema = z.object({
   pounds: z.coerce.number().min(0, 'Weight cannot be negative.').max(100000, 'Enter 100,000 pounds or less.'),
   frequency: z.enum(['One time', 'Weekly', 'Monthly', 'Unsure'], { error: 'Choose how often surplus is available.' }),
   notes: z.string().trim().max(2000, 'Keep your message under 2,000 characters.'),
-  topic: z.enum(['general', 'partner', 'privacy']).optional().default('general'),
+  topic: z.enum(contactTopics).optional().default('general'),
   support_type: z.enum(supportTypes).optional().default('Not sure yet'),
   sponsor_website: z.string().trim().max(300).optional().default('').refine(value => {
     if (!value) return true;

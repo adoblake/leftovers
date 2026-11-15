@@ -1,41 +1,100 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Icon } from '@/components/Icon';
-import { ProduceArt } from '@/components/ProduceArt';
+import { BrandMark } from '@/components/BrandMark';
 import { Faq } from '@/components/Faq';
 import { SponsorSection } from '@/components/SponsorSection';
 import { CallToAction } from '@/components/CallToAction';
 
 export const revalidate = 300;
 
+const loop = ['Work', 'Get paid', 'Eat', 'Pay rent', 'Move up'];
+
+const steps = [
+  { title: 'Day One is on us.', text: 'One meal and one night, so nobody starts hungry. After that, everything is earned.' },
+  { title: 'Pick up a shift.', text: 'Show up in the morning and join the Day Crew: pickups, sorting, cleaning, running the market.' },
+  { title: 'Get paid that day.', text: 'Real wages, at least Arizona minimum wage, paid in money at the end of the shift.' },
+  { title: 'Spend it like anyone.', text: 'Buy groceries at the Leftovers Market and pay rent on your room. Then do it again.' },
+];
+
+const phases = [
+  { label: 'NOW', name: 'Set up', text: 'Legal review, permits, food businesses and employers signed up.', gate: 'Legal sign-off', current: true },
+  { label: 'PHASE 1', name: 'Crew and Market', text: 'Paid Day Crew shifts, the Leftovers Market and first rented rooms in Phoenix.', gate: 'First graduates' },
+  { label: 'PHASE 2', name: 'Ambrose Hall', text: 'Recovery, basic health care and job training with licensed partners. Alumni live on site.', gate: 'Results hold for a year' },
+  { label: 'PHASE 3', name: 'Other cities', text: 'A playbook, shared software and local operators bring the model across the country.' },
+];
+
 export default function Home() {
   return <main id="main" tabIndex={-1}>
-    <section className="hero">
-      <div className="hero-copy"><div className="eyebrow"><Icon name="sun" width="18" height="18" /> GOOD FOOD. GREATER POSSIBILITY.</div>
-        <h1>Good food.<br />New purpose.<br /><em>Stronger community.</em></h1>
-        <p>There’s more to what’s left over. We’re bringing Phoenix together to help good food find its next chapter.</p>
-        <div className="actions"><Link className="button" href="/register">Become a food donor <Icon name="arrow" width="18" height="18" /></Link><Link className="text-link" href="/how-it-works">See how it works <Icon name="arrow" width="16" height="16" /></Link></div>
-        <div className="hero-note"><span className="status-dot" /> Phoenix pilot in development<span className="divider">/</span>Interest, not a pickup booking</div>
-      </div><ProduceArt />
-    </section>
-    <div className="values-strip"><span>Food is a resource. <b>Let’s treat it like one.</b></span><Icon name="sun" width="16" height="16" /><span>Rooted in Phoenix</span><Icon name="sun" width="16" height="16" /><span>Built around community</span><Icon name="sun" width="16" height="16" /><span>Possibility over waste</span></div>
-    <section className="intro section" aria-labelledby="intro-heading"><div className="intro-brand"><Image src="/branding/leftovers-green-gold.png" width={2284} height={2284} unoptimized alt="LEFTOVERS leaf L and wordmark in gold on forest green. Never ending value." /></div><div><div className="eyebrow">THE IDEA IS SIMPLE</div><h2 id="intro-heading">Surplus isn’t the end.<br />It’s a <em>starting point.</em></h2><p>Good food can be left behind for all kinds of reasons. We’re exploring a better path: connecting businesses with surplus food to community partners who can put it to use.</p><p>First, we listen. Then, we build a responsible local pilot around what Phoenix actually needs.</p><Link className="text-link" href="/mission">Get to know our mission <Icon name="arrow" width="17" height="17" /></Link></div></section>
-    <section className="section steps-section" aria-labelledby="steps-heading"><div className="section-heading"><div><div className="eyebrow">SMALL STEPS. SHARED POSSIBILITY.</div><h2 id="steps-heading">A better next chapter.</h2></div><Link className="text-link" href="/how-it-works">Explore the process <Icon name="arrow" width="17" height="17" /></Link></div>
-      <div className="cards process-cards">
-        <article><div className="step-top"><span className="step-number">01 / SHARE</span><Icon name="box" width="29" height="29" /></div><h3>Tell us what’s possible.</h3><p>Have surplus food? Share a little about your business, food types, and timing. Your input helps shape a practical pilot.</p><Link href="/survey">Take the surplus survey <Icon name="arrow" width="16" height="16" /></Link></article>
-        <article><div className="step-top"><span className="step-number">02 / CONNECT</span><Icon name="people" width="29" height="29" /></div><h3>Find common ground.</h3><p>We’ll review interest and explore suitable recipient partners, safe handling requirements, and realistic logistics.</p><Link href="/partners">Explore a partnership <Icon name="arrow" width="16" height="16" /></Link></article>
-        <article><div className="step-top"><span className="step-number">03 / GROW</span><Icon name="leaf" width="29" height="29" /></div><h3>Make room for more.</h3><p>An approved pilot would help us learn, measure actual recovery, and grow a stronger local network, together.</p><Link href="/pickup">Express pickup interest <Icon name="arrow" width="16" height="16" /></Link></article>
+    <section className="hero-band" aria-labelledby="hero-heading">
+      <div className="hero-inner">
+        <div className="hero-copy">
+          <p className="kicker"><Icon name="pin" width="16" height="16" /> Phoenix first. Then the country.</p>
+          <h1 id="hero-heading" className="display">Nothing handed out. <span className="swoosh">Everything earned.</span></h1>
+          <p className="hero-lead">LEFTOVERS turns food that would be thrown away into paid same-day work, fair-price groceries and rooms people pay for themselves. It’s a business built to end homelessness, not a handout.</p>
+          <div className="actions"><Link className="pill pill-dark" href="/crew">Join the Day Crew list <Icon name="arrow" width="18" height="18" /></Link><Link className="pill pill-outline" href="/register">I have surplus food <Icon name="arrow" width="18" height="18" /></Link></div>
+          <p className="hero-status"><span className="status-dot" /> In planning. No shifts, pickups, market or housing are running yet.</p>
+        </div>
+        <div className="hero-stickers" aria-hidden="true">
+          <BrandMark />
+          <span className="sticker s1">Work</span><span className="sticker s2">Get paid</span><span className="sticker s3">Eat</span><span className="sticker s4">Pay rent</span><span className="sticker s5">Move up</span>
+        </div>
       </div>
-      <p className="section-footnote"><Icon name="shield" width="16" height="16" /> Food safety and regulatory review come before operational launch. No pickups are currently operational.</p>
     </section>
-    <section className="partner-section section" aria-labelledby="partner-heading"><div className="section-heading"><div><div className="eyebrow">LOCAL CONNECTIONS. SHARED PURPOSE.</div><h2 id="partner-heading">Good things happen<br />when we <em>come together.</em></h2></div><p>Every organization brings something different to the table. There’s more than one way to help.</p></div>
-      <div className="partner-panels"><article><div className="partner-icon"><Icon name="box" width="30" height="30" /></div><div className="eyebrow">FOR FOOD BUSINESSES</div><h3>A new path for your surplus.</h3><p>Restaurants, grocers, bakeries, growers, and food businesses can help us understand where good food is left over.</p><ul><li><Icon name="check" /> Share your surplus patterns</li><li><Icon name="check" /> Explore a potential recovery partnership</li><li><Icon name="check" /> Help shape practical local logistics</li></ul><Link className="text-link" href="/register">Register donor interest <Icon name="arrow" width="17" height="17" /></Link></article>
-      <article><div className="partner-icon"><Icon name="people" width="30" height="30" /></div><div className="eyebrow">FOR COMMUNITY ORGANIZATIONS</div><h3>Bring your local knowledge.</h3><p>Pantries, nonprofits, and community groups can help shape a pilot around real needs and available capacity.</p><ul><li><Icon name="check" /> Share food and storage needs</li><li><Icon name="check" /> Explore recipient partnership</li><li><Icon name="check" /> Build relationships across Phoenix</li></ul><Link className="text-link" href="/contact?topic=partner">Introduce your organization <Icon name="arrow" width="17" height="17" /></Link></article></div>
+
+    <div className="loop-strip">
+      <p className="sr-only">The daily loop: work, get paid, eat, pay rent, move up.</p>
+      <div className="loop-track" aria-hidden="true">{[0, 1].map(copy => <span key={copy}>{loop.map(word => <span key={word}>{word}<Icon name="sun" width="18" height="18" /></span>)}</span>)}</div>
+    </div>
+
+    <section className="band band-cream" aria-labelledby="deal-heading">
+      <div className="band-inner">
+        <div className="band-head"><p className="kicker">The deal</p><h2 id="deal-heading" className="display">How a day works.</h2><p>Four steps, every day, until a member walks out with a job and a home of their own.</p></div>
+        <ol className="deal-steps">{steps.map((step, index) => <li key={step.title}><span className="deal-num">{index + 1}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>
+        <Link className="text-link" href="/how-it-works">See the full model <Icon name="arrow" width="17" height="17" /></Link>
+      </div>
     </section>
-    <section className="vision section" id="vision" aria-labelledby="vision-heading"><div className="vision-intro"><div><div className="eyebrow">ONE VISION. ROOM TO GROW.</div><h2 id="vision-heading">Starting with food.<br /><em>Thinking beyond it.</em></h2></div><p>A Phoenix food recovery pilot is the first proposed step. The bigger picture is a community that finds more value in its food, resources, and people.</p></div>
-      <div className="phases"><div className="phase-current"><span className="phase-label">IN DEVELOPMENT</span><b>01</b><h3>Phoenix food recovery</h3><p>Listening, connecting, and planning a responsible local pilot.</p></div><div><span className="phase-label">PROPOSED</span><b>02</b><h3>Community market</h3><p>A future place to connect food, people, and opportunity.</p></div><div><span className="phase-label">PROPOSED</span><b>03</b><h3>Ambrose Hall</h3><p>A vision for workforce development and community services.</p></div><div><span className="phase-label">LONG-TERM VISION</span><Icon name="arrow" width="22" height="22" /><h3>Resource recovery</h3><p>Exploring value beyond food, one thoughtful step at a time.</p></div></div>
-      <p className="vision-footnote">Later phases are proposed and have not launched. <Link href="/mission">Read the full vision <Icon name="arrow" width="15" height="15" /></Link></p>
+
+    <section className="band band-white" aria-labelledby="business-heading">
+      <div className="band-inner">
+        <div className="band-head"><p className="kicker">Three businesses, one goal</p><h2 id="business-heading" className="display">Every part pays its way.</h2></div>
+        <div className="biz-grid">
+          <article className="biz biz-green"><Icon name="people" width="34" height="34" /><h3>Day Crew</h3><p>Paid shifts you can pick up that morning. Work comes from our own operations and from outside contracts like event cleanup and catering prep.</p><p className="biz-earns"><b>Earns from</b> work contracts with businesses and cities</p><Link className="text-link" href="/crew">Join the list <Icon name="arrow" width="16" height="16" /></Link></article>
+          <article className="biz biz-gold"><Icon name="box" width="34" height="34" /><h3>Leftovers Market</h3><p>A store selling recovered food at prices that only cover handling, storage and transport. Anyone can shop. Crew members pay with their wages like any customer.</p><p className="biz-earns"><b>Earns from</b> grocery sales at cost</p><Link className="text-link" href="/register">Supply the market <Icon name="arrow" width="16" height="16" /></Link></article>
+          <article className="biz biz-line"><Icon name="shield" width="34" height="34" /><h3>Leftovers Housing</h3><p>Private or shared rooms. Rent is a share of what you earn, so it grows as you work more and never takes everything.</p><p className="biz-earns"><b>Earns from</b> member rent</p><Link className="text-link" href="/how-it-works#housing">How rent works <Icon name="arrow" width="16" height="16" /></Link></article>
+        </div>
+      </div>
     </section>
+
+    <section className="band band-green manifesto" aria-labelledby="manifesto-heading">
+      <div className="band-inner manifesto-inner">
+        <h2 id="manifesto-heading" className="display">Not a charity. <span className="gold-text">A business that bets on you.</span></h2>
+        <div className="manifesto-copy">
+          <p>Handouts keep people where they are. A paycheck, a bill paid on time and a key you paid for build something nobody can give you: proof that you can stand on your own.</p>
+          <p>So LEFTOVERS runs like a business. Members are crew, customers and tenants, with the same deal as anyone else. We hold up our end with fair pay, fair prices and fair rent.</p>
+          <p className="manifesto-note"><b>Who it’s for:</b> adults who are able and ready to work. Children, elderly people and anyone in a medical crisis are referred to partners on Day One.</p>
+        </div>
+      </div>
+    </section>
+
+    <section className="band band-cream" aria-labelledby="join-heading">
+      <div className="band-inner">
+        <div className="band-head"><p className="kicker">Get involved</p><h2 id="join-heading" className="display">Pick your role.</h2></div>
+        <div className="join-grid">
+          <Link className="join-tile" href="/register"><span className="join-label">Food businesses</span><b>Turn surplus into someone’s paycheck.</b><span className="join-go">Sign up <Icon name="arrow" width="18" height="18" /></span></Link>
+          <Link className="join-tile" href="/contact?topic=employer"><span className="join-label">Employers and cities</span><b>Hire a supervised crew for real work.</b><span className="join-go">Offer work <Icon name="arrow" width="18" height="18" /></span></Link>
+          <Link className="join-tile" href="/contact?topic=partner"><span className="join-label">Clinics and programs</span><b>Bring recovery and health care to Ambrose Hall.</b><span className="join-go">Partner with us <Icon name="arrow" width="18" height="18" /></span></Link>
+          <Link className="join-tile join-tile-gold" href="/sponsors"><span className="join-label">Sponsors and investors</span><b>Fund the first site in Phoenix.</b><span className="join-go">Start a conversation <Icon name="arrow" width="18" height="18" /></span></Link>
+        </div>
+      </div>
+    </section>
+
+    <section className="band band-gold" id="roadmap" aria-labelledby="roadmap-heading">
+      <div className="band-inner">
+        <div className="band-head"><p className="kicker">Roadmap</p><h2 id="roadmap-heading" className="display">Prove it in Phoenix. Then go national.</h2><p>Each phase opens only when the one before it shows results.</p></div>
+        <ol className="roadmap">{phases.map(phase => <li key={phase.name} className={phase.current ? 'current' : undefined}><span className="phase-tag">{phase.label}</span><h3>{phase.name}</h3><p>{phase.text}</p>{phase.gate && <span className="gate"><span className="gate-mark" aria-hidden="true" />Next gate: {phase.gate}</span>}</li>)}</ol>
+      </div>
+    </section>
+
     <SponsorSection /><Faq /><CallToAction />
   </main>;
 }

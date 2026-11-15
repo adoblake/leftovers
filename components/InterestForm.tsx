@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
-import { interestSchema, supportTypes, type InterestKind } from '@/lib/validation';
+import { interestSchema, supportTypes, type ContactTopic, type InterestKind } from '@/lib/validation';
 import { Icon } from './Icon';
 import { TurnstileCheck } from './TurnstileCheck';
 
-type Topic = 'general' | 'partner' | 'privacy';
+type Topic = ContactTopic;
 export function InterestForm({ kind, topic = 'general', preview = false, turnstileSiteKey }: { kind: InterestKind; topic?: Topic; preview?: boolean; turnstileSiteKey?: string }) {
   const id = useId();
   const formRef = useRef<HTMLFormElement>(null);
