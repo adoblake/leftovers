@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Icon } from '@/components/Icon';
 import { CallToAction } from '@/components/CallToAction';
 
@@ -18,7 +19,8 @@ export default function Page() {
         <p><b>Proof before growth.</b> We measure people moving into outside jobs and their own homes. Only when Phoenix shows results do we take the model to other cities.</p>
       </div>
     </div></section>
-    <section className="band band-white"><div className="band-inner"><div className="band-head"><p className="kicker">Where we are</p><h2 className="display">Planning, honestly.</h2><p>Right now we’re signing up food businesses, employers and partners, and getting legal review on wages, food sales and housing. Nothing is operating yet.</p></div><Link className="pill pill-dark" href="/how-it-works">See how it will work <Icon name="arrow" width="18" height="18" /></Link></div></section>
+    <section className="band band-white"><div className="band-inner split"><Image className="split-photo" src="/photos/secondhand-market.webp" width={1000} height={1498} unoptimized alt="A man sorts through piles of secondhand clothes at a covered market." /><div><p className="kicker">The long game</p><h2 className="display">Food first. <span className="gold-text">Then everything else.</span></h2><p className="split-lead">Food is where we start because it spoils fast and people need it every day. The same model works for clothes, furniture and household goods that would otherwise be thrown out. Once the food market proves itself, we’ll add more.</p></div></div></section>
+    <section className="band band-cream"><div className="band-inner"><div className="band-head"><p className="kicker">Where we are</p><h2 className="display">Planning, honestly.</h2><p>Right now we’re signing up food businesses, employers and partners, and getting legal review on wages, food sales and housing. Nothing is operating yet.</p></div><Link className="pill pill-dark" href="/how-it-works">See how it will work <Icon name="arrow" width="18" height="18" /></Link></div></section>
     <CallToAction />
   </main>;
 }

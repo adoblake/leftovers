@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
-import { BrandMark } from '@/components/BrandMark';
+import Image from 'next/image';
 import { Faq } from '@/components/Faq';
 import { SponsorSection } from '@/components/SponsorSection';
 import { CallToAction } from '@/components/CallToAction';
@@ -34,9 +34,9 @@ export default function Home() {
           <div className="actions"><Link className="pill pill-dark" href="/crew">Join the Day Crew list <Icon name="arrow" width="18" height="18" /></Link><Link className="pill pill-outline" href="/register">I have surplus food <Icon name="arrow" width="18" height="18" /></Link></div>
           <p className="hero-status"><span className="status-dot" /> In planning. No shifts, pickups, market or housing are running yet.</p>
         </div>
-        <div className="hero-stickers" aria-hidden="true">
-          <BrandMark />
-          <span className="sticker s1">Work</span><span className="sticker s2">Get paid</span><span className="sticker s3">Eat</span><span className="sticker s4">Pay rent</span><span className="sticker s5">Move up</span>
+        <div className="hero-photo">
+          <Image src="/photos/kitchen-crew.webp" width={1000} height={1500} unoptimized priority alt="A cook in a striped apron lays out fresh gnocchi on a tray in a working kitchen." />
+          <span className="sticker s1" aria-hidden="true">Work</span><span className="sticker s2" aria-hidden="true">Get paid</span><span className="sticker s4" aria-hidden="true">Move up</span>
         </div>
       </div>
     </section>
@@ -45,6 +45,21 @@ export default function Home() {
       <p className="sr-only">The daily loop: work, get paid, eat, pay rent, move up.</p>
       <div className="loop-track" aria-hidden="true">{[0, 1].map(copy => <span key={copy}>{loop.map(word => <span key={word}>{word}<Icon name="sun" width="18" height="18" /></span>)}</span>)}</div>
     </div>
+
+    <section className="band band-white problem" aria-labelledby="problem-heading">
+      <div className="band-inner problem-inner">
+        <div className="problem-copy">
+          <p className="kicker">The problem</p>
+          <h2 id="problem-heading" className="display">Good food gets thrown out. <span className="gold-text">People go without.</span></h2>
+          <p>Every night, restaurants, bakeries and grocers throw out food that’s still good. A few streets away, people sleep outside with no work and no way in.</p>
+          <p>Handing out the leftovers helps for a night. LEFTOVERS puts both to work: the food stocks a market, and the people running it get paid.</p>
+        </div>
+        <figure className="photo-pair">
+          <Image className="photo-main" src="/photos/leftover-plates.webp" width={1400} height={931} unoptimized alt="Half-eaten sandwiches and fries left on plates after a restaurant meal." />
+          <Image className="photo-inset" src="/photos/surplus-pastries.webp" width={1400} height={933} unoptimized alt="A paper bag of unsold pastries left on a bench, marked free pastries." />
+        </figure>
+      </div>
+    </section>
 
     <section className="band band-cream" aria-labelledby="deal-heading">
       <div className="band-inner">
@@ -67,7 +82,7 @@ export default function Home() {
 
     <section className="band band-green manifesto" aria-labelledby="manifesto-heading">
       <div className="band-inner manifesto-inner">
-        <h2 id="manifesto-heading" className="display">Not a charity. <span className="gold-text">A business that bets on you.</span></h2>
+        <div className="manifesto-head"><h2 id="manifesto-heading" className="display">Not a charity. <span className="gold-text">A business that bets on you.</span></h2><Image className="manifesto-photo" src="/photos/neighbors.webp" width={1333} height={700} unoptimized alt="A man leans in to talk with an older woman at an outdoor market. Both are smiling." /></div>
         <div className="manifesto-copy">
           <p>Handouts keep people where they are. A paycheck, a bill paid on time and a key you paid for build something nobody can give you: proof that you can stand on your own.</p>
           <p>So LEFTOVERS runs like a business. Members are crew, customers and tenants, with the same deal as anyone else. We hold up our end with fair pay, fair prices and fair rent.</p>
