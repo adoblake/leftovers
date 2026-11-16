@@ -6,6 +6,8 @@ The current software budget is **$0**. The prepared launch path uses Netlify Fre
 
 [Deploy a separate copy on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/adoblake/leftovers). Sign in with the account that owns the repository, select the Free plan, and keep the included build settings. The first deployment is a clearly labeled public demo. Netlify supplies the actual HTTPS website address after a successful deployment. This launch link is not the website URL; real intake and private staff access require the database and spam-check setup below.
 
+The live site builds from this repository's `main` branch. Pull requests get a Netlify Deploy Preview link in their checks, so changes can be reviewed before merging. Build settings live in `netlify.toml` (`npm run build`, publish `.next`), which overrides the build fields in the Netlify UI.
+
 ## Local setup
 
 Use the existing isolated checkout; no Git worktree is needed. Requires Node 24 and npm 11.
