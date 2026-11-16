@@ -88,7 +88,7 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="band band-gold" id="roadmap" aria-labelledby="roadmap-heading">
+    <section className="band band-white" id="roadmap" aria-labelledby="roadmap-heading">
       <div className="band-inner">
         <div className="band-head"><p className="kicker">Roadmap</p><h2 id="roadmap-heading" className="display">Prove it in Phoenix. Then go national.</h2><p>Each phase opens only when the one before it shows results.</p></div>
         <ol className="roadmap">{phases.map(phase => <li key={phase.name} className={phase.current ? 'current' : undefined}><span className="phase-tag">{phase.label}</span><h3>{phase.name}</h3><p>{phase.text}</p>{phase.gate && <span className="gate"><span className="gate-mark" aria-hidden="true" />Next gate: {phase.gate}</span>}</li>)}</ol>
