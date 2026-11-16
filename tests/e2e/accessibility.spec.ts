@@ -2,7 +2,7 @@ import { test, expect, type Page, type BrowserContext, type TestInfo } from '@pl
 import AxeBuilder from '@axe-core/playwright';
 
 const tags = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'];
-const routes = ['/', '/mission', '/how-it-works', '/partners', '/get-involved', '/register', '/survey', '/pickup', '/contact', '/sponsors', '/privacy', '/accessibility', '/demo', '/dashboard', '/missing-page'];
+const routes = ['/', '/mission', '/how-it-works', '/partners', '/get-involved', '/crew', '/register', '/survey', '/pickup', '/contact', '/sponsors', '/privacy', '/accessibility', '/demo', '/dashboard', '/missing-page'];
 const staffOrigin = 'http://localhost:3151';
 async function accessible(page: Page) {
   const result = await new AxeBuilder({ page }).withTags(tags).analyze();

@@ -1,4 +1,24 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
-export const metadata = { title: 'Our mission' };
+import { Icon } from '@/components/Icon';
+import { CallToAction } from '@/components/CallToAction';
 
-export default function Page(){return <main id="main" tabIndex={-1} className="page-main editorial"><div className="eyebrow">OUR MISSION</div><h1>Finding Value<br/><em>Everywhere.</em></h1><p className="lead">We see possibility in what gets left behind. LEFTOVERS is a developing effort to connect food, people, and resources across Phoenix.</p><h2>Start local. Learn together.</h2><p>Phase 1 is a proposed Phoenix food recovery pilot. We are gathering interest from food donors and recipient organizations to understand demand, safe handling needs, transportation, and operating costs.</p><h2>A vision with room to grow.</h2><p>Phase 2 proposes a community market. Phase 3 proposes Ambrose Hall, a home for workforce and community services. Resource recovery beyond food is a longer-term ambition. These later phases are proposed and have not launched.</p><Link href="/register" className="button">Help shape the pilot →</Link></main>}
+export const metadata: Metadata = { title: 'Our mission' };
+
+export default function Page() {
+  return <main id="main" tabIndex={-1}>
+    <section className="page-hero"><div className="band-inner"><p className="kicker">Our mission</p><h1 className="display">End homelessness. <span className="swoosh">One paycheck at a time.</span></h1><p className="hero-lead">Every day, good food gets thrown out while people go without. LEFTOVERS puts both to work: surplus food becomes paid jobs, fair-price groceries and rooms people pay for themselves.</p></div></section>
+    <section className="band band-cream"><div className="band-inner prose-grid">
+      <div><h2 className="display">What we believe</h2></div>
+      <div className="prose">
+        <p><b>Nothing is free, and that’s the point.</b> Earning your food and paying your rent builds the habits and confidence a handout can’t. We treat members as crew, customers and tenants, not cases.</p>
+        <p><b>Fair deals both ways.</b> Members put in honest work. We pay honest wages the same day, charge prices that only cover our costs and set rent as a share of income.</p>
+        <p><b>Day One is covered.</b> Nobody should have to work hungry for their first shift. One meal and one night are on us. After that, it’s earned.</p>
+        <p><b>Clear about who we serve.</b> LEFTOVERS is for adults who are able and ready to work. People who can’t are referred to partners on Day One.</p>
+        <p><b>Proof before growth.</b> We measure people moving into outside jobs and their own homes. Only when Phoenix shows results do we take the model to other cities.</p>
+      </div>
+    </div></section>
+    <section className="band band-white"><div className="band-inner"><div className="band-head"><p className="kicker">Where we are</p><h2 className="display">Planning, honestly.</h2><p>Right now we’re signing up food businesses, employers and partners, and getting legal review on wages, food sales and housing. Nothing is operating yet.</p></div><Link className="pill pill-dark" href="/how-it-works">See how it will work <Icon name="arrow" width="18" height="18" /></Link></div></section>
+    <CallToAction />
+  </main>;
+}

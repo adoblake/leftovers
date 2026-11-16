@@ -4,16 +4,18 @@ import { Icon } from '@/components/Icon';
 
 export const metadata: Metadata = { title: 'Get involved' };
 const ways = [
-  { icon: 'heart', label: 'I’D LIKE TO SUPPORT THE PILOT', title: 'Explore sponsorship.', description: 'Start a conversation about funding, equipment, transport, or professional support. No payment or commitment is required to inquire.', href: '/sponsors', action: 'Explore sponsorship opportunities' },
-  { icon: 'box', label: 'I HAVE SURPLUS FOOD', title: 'Become a potential donor.', description: 'Introduce your restaurant, grocery, bakery, farm, or other food business. Help us explore a path for your surplus.', href: '/register', action: 'Register donor interest' },
-  { icon: 'people', label: 'I REPRESENT A COMMUNITY ORGANIZATION', title: 'Explore recipient partnership.', description: 'Share your organization’s food needs, storage capacity, and local knowledge. Let’s explore what a partnership could look like.', href: '/contact?topic=partner', action: 'Introduce your organization' },
-  { icon: 'chart', label: 'I CAN HELP WITH PILOT PLANNING', title: 'Tell us about your surplus.', description: 'A few estimates about food types, quantities, and frequency can help us build a pilot around real needs.', href: '/survey', action: 'Take the food surplus survey' },
-  { icon: 'pin', label: 'I’M INTERESTED IN A FUTURE PICKUP', title: 'Start with an expression of interest.', description: 'Help us understand potential pickup needs. This is a planning conversation, not a reservation or a confirmed service.', href: '/pickup', action: 'Express pickup interest' },
+  { icon: 'people', label: 'I’M READY TO WORK', title: 'Join the Day Crew list.', description: 'Get notified when paid same-day shifts open in Phoenix. Not an application or job offer yet.', href: '/crew', action: 'Join the list' },
+  { icon: 'box', label: 'I HAVE SURPLUS FOOD', title: 'Supply the market.', description: 'Restaurants, grocers, bakeries, farms and caterers: sign up to turn surplus into paid work.', href: '/register', action: 'Sign up your business' },
+  { icon: 'chart', label: 'I HAVE WORK THAT NEEDS DOING', title: 'Hire the crew.', description: 'Cleanup, catering prep, landscaping or warehouse help. Tell us what a supervised crew could take on.', href: '/contact?topic=employer', action: 'Offer work' },
+  { icon: 'shield', label: 'I RUN A CLINIC OR PROGRAM', title: 'Partner on Ambrose Hall.', description: 'Recovery, health and training providers: bring your services to members who have a job to return to.', href: '/contact?topic=partner', action: 'Partner with us' },
+  { icon: 'heart', label: 'I WANT TO BACK THIS', title: 'Sponsor or invest.', description: 'Help fund the first Phoenix site: vehicles, cold storage, a building or professional help.', href: '/sponsors', action: 'Become a backer' },
+  { icon: 'leaf', label: 'I KNOW MY FOOD NUMBERS', title: 'Take the surplus survey.', description: 'A few estimates about food types, amounts and timing help us size the market.', href: '/survey', action: 'Take the survey' },
 ] as const;
 
 export default function Page() {
-  return <main id="main" tabIndex={-1} className="page-main"><div className="eyebrow">GOOD FOOD. MORE CONNECTIONS.</div><h1>Find your place<br /><em>at the table.</em></h1><p className="lead">A better next chapter starts with people like you. Choose the path that fits, and help shape the Phoenix pilot.</p>
-    <div className="involvement-grid">{ways.map(way => <article className="involvement-card" key={way.href}><Icon name={way.icon} width="32" height="32" /><div className="eyebrow">{way.label}</div><h2>{way.title}</h2><p>{way.description}</p><Link className="text-link" href={way.href}>{way.action}<Icon name="arrow" width="17" height="17" /></Link></article>)}</div>
-    <div className="notice"><strong>A pilot in the making.</strong> Pickups are not operational. All interest is pending review and approval. Food safety and regulatory review come before launch; availability, pricing, and tax benefits are not promised.</div><p>Have an idea or a question? <Link className="text-link" href="/contact">Let’s talk <Icon name="arrow" width="16" height="16" /></Link></p>
+  return <main id="main" tabIndex={-1}>
+    <section className="page-hero"><div className="band-inner"><p className="kicker">Get involved</p><h1 className="display">Pick your role. <span className="swoosh">Get to work.</span></h1><p className="hero-lead">Ending homelessness takes food, work, care and money. Choose the part you can bring.</p></div></section>
+    <section className="band band-cream"><div className="band-inner"><div className="involvement-grid">{ways.map(way => <article className="involvement-card" key={way.href}><Icon name={way.icon} width="32" height="32" /><p className="kicker">{way.label}</p><h2>{way.title}</h2><p>{way.description}</p><Link className="text-link" href={way.href}>{way.action}<Icon name="arrow" width="17" height="17" /></Link></article>)}</div>
+      <div className="notice"><strong>Planning stage.</strong> Nothing is operating yet. Every sign-up is interest only, pending legal and safety review. No jobs, housing, pickups or tax benefits are promised.</div><p>Have a question first? <Link className="text-link" href="/contact">Talk to us <Icon name="arrow" width="16" height="16" /></Link></p></div></section>
   </main>;
 }
